@@ -143,7 +143,7 @@ This repository does **not** include the full commercial implementation.
 
 For licensing, collaboration, or industrial applications:
 
-📧 gammasystemsresearchlab@gmail.com  
+📧 eduardo.hernandez.morales.a01@gmail.com
 
 ---
 
