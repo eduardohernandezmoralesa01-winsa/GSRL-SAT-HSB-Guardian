@@ -1,159 +1,218 @@
-# 🚀 GSRL SAT HSB Guardian  
-**Real-Time Spectral Stability Control for Satellite Systems**
-
-**Author:** Eduardo Hernández Morales  
-**Affiliation:** Gamma Systems Research Laboratory (GSRL)  
-**IEEE Member**
-
----
-
-## 📌 Overview
-
-GSRL SAT HSB Guardian is a **spectral-based real-time control framework**
-designed for satellite attitude control and embedded nonlinear systems.
-
-This repository provides a **restricted demonstration version** intended
-for scientific validation and reproducibility, aligned with an
-IEEE Access submission.
+# GSRL-SAT-HSB-Guardian
+### Real-Time Spectral Stability Guardian for Satellite Attitude Control
+**Gamma Systems Research Laboratory (GSRL)**  
+*Eduardo Hernández Morales — Independent Researcher.*  
+*Morelia, Michoacán, México*
 
 ---
 
-## 🔬 Scientific Contribution
-
-- Spectral stability-based control framework (HSB)
-- Real-time execution capability: **< 1 ms**
-- Significant improvement over classical LMI-based methods (~142 ms)
-- Multi-platform architecture:
-  - C++
-  - Python
-  - MATLAB
-  - Julia
-  - FPGA (VHDL-2008)
-  - PLC (Siemens SCL)
+[![IEEE Access](https://img.shields.io/badge/IEEE%20Access-Under%20Review-blue)](https://zenodo.org/records/17643758)
+[![Zenodo](https://img.shields.io/badge/Zenodo-10.5281%2Fzenodo.17643758-blue)](https://zenodo.org/records/17643758)
+[![ORCID](https://img.shields.io/badge/ORCID-0009--0004--5366--8511-green)](https://orcid.org/0009-0004-5366-8511)
+[![License](https://img.shields.io/badge/License-Academic%20Free-orange)](https://hermanos4.gumroad.com/)
 
 ---
 
-## ⚠️ Important Notice (IP Protection)
+## 🛰️ What is this?
 
-> This repository contains **only a simplified demonstration version**.
+This repository contains the **open-source demonstration** of the
+**HSB Spectral Guardian** — a real-time, optimization-free stability
+supervisor for spacecraft attitude control systems.
 
-The following components are **NOT included**:
+The framework is based on three original theoretical contributions
+developed at GSRL:
 
-- Full HSB control core  
-- Real-time optimized pipeline  
-- FPGA (VHDL) implementation  
-- PLC (Siemens SCL) implementation  
-- High-performance multi-language implementations  
+| Framework | Description |
+|-----------|-------------|
+| **HSB** — Hermitian Spectral Bound | Algebraic upper bound on the spectral abscissa, evaluated in **9–13 µs** on embedded hardware |
+| **Gamma Theory** (γ₁–γ₄) | Adaptive conservatism parameter governing guardian interventions |
+| **OCS** — Spectral Control Operator | Closed-form supervisory correction without LMIs or optimization |
 
-These elements are **proprietary technologies** protected under GSRL licensing.
-
----
-
-## ⚙️ Demo Contents
-
-This repository includes:
-
-- Simplified satellite attitude control model  
-- Inverted pendulum validation example  
-- Reproducible simulations  
-- Non-proprietary illustrative control implementation  
+The guardian operates as an **independent supervisory layer**:
+it does not modify the controller — it monitors spectral stability
+conditions online and intervenes only when margins are at risk.
 
 ---
 
-## 🧪 Reproducibility
+## 📄 Associated Publication
 
-The provided demo enables:
+> E. Hernández Morales, *"Real-Time Spectral Stability Guardian for
+> Satellite Attitude Control: Ultra-Fast Validation with Quaternion
+> Dynamics,"* IEEE Access, under review, 2026.  
+> Preprint: https://zenodo.org/records/17643758
 
-- Validation of stabilization behavior  
-- Reproduction of representative results  
-- Conceptual verification of the HSB framework  
-
-This ensures transparency without exposing protected intellectual property.
-
----
-
-## 🛰️ Applications
-
-- Satellite attitude control (ADCS)  
-- CubeSats (6U LEO missions)  
-- Nonlinear control systems  
-- Embedded and real-time control  
-- Industrial control systems (conceptual)
-
----
-
-## 📄 IEEE Access Submission
-
-> E. Hernández Morales,  
-> *"Real-Time Spectral Stability Control for Satellite Systems using HSB Framework"*,  
-> IEEE Access, 2026 (under review)
+If you use this work, please cite:
+```bibtex
+@article{hernandez2026guardian,
+  author  = {Hern{\'a}ndez Morales, Eduardo},
+  title   = {Real-Time Spectral Stability Guardian for Satellite
+             Attitude Control: Ultra-Fast Validation with
+             Quaternion Dynamics},
+  journal = {IEEE Access},
+  year    = {2026},
+  note    = {Under review. Preprint: Zenodo, \url{https://zenodo.org/records/17643758}}
+}
+```
 
 ---
 
-## 📜 Licensing
+## 🚀 Quick Demo — Figure 1 (Reproducible)
 
-This project follows a **multi-license scheme**:
+This script reproduces **Figure 1** of the IEEE Access paper exactly:
+6U CubeSat, 30° pitch slew, 160 s, with HSB Guardian active.
 
-- Academic License → research and education  
-- Commercial License → single developer / single project  
-- Industrial License → critical systems deployment  
-- Corporate License → enterprise usage  
+```bash
+# Clone and run
+git clone https://github.com/eduardohernandezmoralesa01-winsa/GSRL-SAT-HSB-Guardian.git
+cd GSRL-SAT-HSB-Guardian
+pip install numpy matplotlib
+python Figure1_HSB_Guardian_IEEE_FINAL.py
+```
 
-See `/LICENSES` for full terms and conditions.
+**Reproducible results (seeds fixed):**
 
----
-
-## 💰 Intellectual Property
-
-Estimated valuation of the technology:
-
-**~$85,000 USD**
-
-This repository does **not** include the full commercial implementation.
-
----
-
-## 🔑 Keywords
-
-- Spectral control  
-- HSB framework  
-- Satellite attitude control  
-- ADCS (Attitude Determination and Control Systems)  
-- CubeSat control  
-- Real-time control systems  
-- Nonlinear control  
-- Embedded systems  
-- FPGA control  
-- PLC control  
-- LMI alternatives  
-- Robust control  
+| Metric | Value |
+|--------|-------|
+| Final pointing error | 0.039° (spec < 0.1°) ✅ |
+| Guardian interventions | 23 (0.29% of steps) |
+| False negatives | 0 |
+| γ_m range | 1.20 – 1.85 |
+| Avg conservatism | ~2.8% |
+| Evaluation time | < 1 ms |
 
 ---
 
-## 📊 Research Areas
+## 🧪 Simulation Scenario
 
-- Control Systems Engineering  
-- Aerospace Engineering  
-- Embedded Systems  
-- Real-Time Computing  
-
----
-
-## 📬 Contact
-
-For licensing, collaboration, or industrial applications:
-
-📧 eduardo.hernandez.morales.a01@gmail.com
+```
+Satellite   : 6U CubeSat, 12 kg
+Inertia     : J = diag(0.08, 0.06, 0.05) kg·m²  (±8% uncertainty)
+Maneuver    : 30° pitch slew from inertial frame
+Duration    : 160 s  |  Control rate: 50 Hz
+Perturbations: Aero drag, SRP, gravity gradient, magnetic torque (LEO 400 km)
+Actuators   : Reaction wheels  (τ_max = 0.08 Nm, h_sat = 0.15 Nms)
+Guardian    : HSB bound evaluated at each control cycle (~9–13 µs)
+```
 
 ---
 
-## ⚖️ Disclaimer
+## 📁 Repository Structure
 
-This software is provided **"as is"** for research and demonstration purposes only.  
-No warranty is provided. The author is not responsible for any damages derived from its use.
+```
+GSRL-SAT-HSB-Guardian/
+│
+├── Figure1_HSB_Guardian_IEEE_FINAL.py   # Reproducible Figure 1 (IEEE paper)
+├── Satelite_cota_full_simulator.py      # Full ultra-realistic simulator (15 panels)
+├── README.md
+└── outputs/
+    ├── Figure1_HSB_Guardian_IEEE_FINAL.png   (600 dpi)
+    └── Figure1_HSB_Guardian_IEEE_FINAL.pdf   (vectorial)
+```
 
 ---
 
-## ⭐ Citation
+## 💻 Commercial Suite — Full Multi-Language Implementation
 
-If you use this work, please cite the associated IEEE publication.
+The demonstration in this repository covers the **Python simulation**.
+
+The **complete commercial suite** includes production-ready implementations
+across **6 languages and platforms**, targeting embedded aerospace systems:
+
+| Language / Platform | Target Use |
+|---------------------|------------|
+| 🐍 **Python** | Simulation, rapid prototyping, data analysis |
+| ⚙️ **C++** | Embedded flight computers (ARM Cortex-M7, LEON3FT) |
+| 📐 **MATLAB** | Engineering design, Simulink integration |
+| 🔬 **Julia** | High-performance numerical validation |
+| 🏭 **PLC / SCL** | Industrial ground support equipment |
+| 🔌 **VHDL** | FPGA / radiation-hardened hardware implementation |
+
+Each implementation includes:
+- Full HSB + Gamma + OCS framework
+- Documented source code with inline theory
+- Test benches and validation scripts
+- Integration guide for your existing ADCS architecture
+
+---
+
+## 🛒 Get the Full Suite
+
+<div align="center">
+
+### ➡️ [Purchase on Gumroad](https://hermanos4.gumroad.com/)
+
+*Academic · Industrial · Commercial · Corporate licensing tiers available*
+
+</div>
+
+For institutional licensing, bulk orders, or integration consulting:  
+📧 Contact via Gumroad or open an Issue in this repository.
+
+---
+
+## 📐 Theoretical Background
+
+The spectral stability condition at the core of the guardian:
+
+```
+γ_HSB(x) < 0   ⟹   locally exponentially stable
+```
+
+where:
+
+```
+γ_HSB(x) ≤ ½ · (‖A + Aᵀ‖₂ + ‖D + Dᵀ‖₂ + ‖B‖₂ + ‖C‖₂)
+```
+
+This bound is derived from the **Hermitian part of the closed-loop Jacobian**
+using block-structure subadditivity — no eigenvalue decomposition required.
+
+Computational complexity: **O(n²)** vs O(n³) for classical eigenvalue tests.  
+On LEON3FT (radiation-tolerant): **≈ 2.3 µs** per guardian cycle.
+
+---
+
+## 🔬 GSR Framework — Origin
+
+The theoretical foundations trace to 1996 (undergraduate thesis,
+Instituto Tecnológico de Morelia), with results presented at:
+- IFAC World Congress 1999 (Beijing)
+- IEEE CDC 2000 (Sydney)
+- IFAC 2002 (Barcelona)
+
+The modern HSB–Gamma–OCS formulation crystallized at GSRL in 2025
+after nearly three decades of development.
+
+---
+
+## 📜 License
+
+This **demonstration repository** is released for academic and
+evaluation purposes.
+
+Commercial use requires a license.
+See [Gumroad store](https://hermanos4.gumroad.com/) for available tiers:
+
+- **ACADEMIC** — Research and educational use
+- **INDUSTRIAL** — Single-organization deployment
+- **COMMERCIAL** — Product integration rights
+- **CORPORATE** — Enterprise / multi-site license
+
+---
+
+## 👤 Author
+
+**Eduardo Hernández Morales**  
+Independent Researcher · IEEE Member (since ~1993)  
+New York Academy of Sciences Member  
+Gamma Systems Research Laboratory (GSRL)  
+Morelia, Michoacán, México  
+
+ORCID: [0009-0004-5366-8511](https://orcid.org/0009-0004-5366-8511)  
+Zenodo: [zenodo.org/records/17643758](https://zenodo.org/records/17643758)  
+Gumroad: [hermanos4.gumroad.com](https://hermanos4.gumroad.com/)
+
+---
+
+*"Bridging classical spectral stability theory with operational requirements
+in modern autonomous aerospace systems."*
